@@ -64,4 +64,6 @@ public class RecorridosAG {
 		}
 		return L;
 	}
+
+	/*Al trabajarlo en el mismo GeneralTree.java no habria mucho para modificar (creo)*/
 }
