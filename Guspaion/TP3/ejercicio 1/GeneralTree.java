@@ -141,4 +141,48 @@ public class GeneralTree<T> {
 		}
 		return result;
 	}
+	
+	public GeneralTree<T> buscar(T dato) {
+		if(!this.isEmpty()) {
+			if(this.getData() == dato) {
+				return this;
+			} else {
+				GeneralTree<T> aux;
+				for(GeneralTree<T> child: this.getChildren()) {
+					aux = child.buscar(dato);
+					if(aux != null) {
+						return aux;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	private boolean esAncestro(GeneralTree<T> ab, T b) {
+		boolean laIndicada = false;
+		if(!ab.isEmpty()) {
+			if(ab.getData() == b) {
+				return true;
+			} else {
+				if(ab.hasChildren()) {
+					for(GeneralTree<T> child: ab.getChildren()) {
+						laIndicada = esAncestro(child, b);
+						if(laIndicada) {
+							return laIndicada;
+						}
+					}	
+				}
+			}
+		}
+		return laIndicada;
+	}
+	
+	public boolean esAncestro(T a, T b) {
+		GeneralTree<T> ancestro = this.buscar(a);
+		if(ancestro != null) {
+			return esAncestro(ancestro, b);
+		}
+		return false;
+	}
 }
