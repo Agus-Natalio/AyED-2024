@@ -8,6 +8,7 @@ import tp5.ejercicio1.*;
 public class Mapa {
 	public Graph<String> mapaCiudades() {
 		//Codigo para generar grafo de ciudades
+		return null;//Para que no joda este metodo
 	}
 	
 	public List<String> devolverCamino(String ciudad1, String ciudad2){
@@ -20,7 +21,7 @@ public class Mapa {
 		boolean[] visited = new boolean[grafo.getSize()];
 		Vertex<String> startingVertex = grafo.search(ciudad1);
 		if(startingVertex != null) {
-			if(devolverCamino(startingVertex.getPosition(), grafo, visited, camino, ciudad2)) {
+			if(devolverCamino(startingVertex.getPosition(), grafo, visited, L, ciudad2)) {
 				return L;
 			}
 		}
@@ -141,9 +142,9 @@ public class Mapa {
 		visited[vAct.getPosition()] = false;
 		camino.ciudades.remove(camino.ciudades.size() - 1);
 	}
-
-
-		public List<String> caminoConMenorCargaDeCombustible(String ciudad1, String ciudad2, int tanqueAuto){
+	
+	
+	public List<String> caminoConMenorCargaDeCombustible(String ciudad1, String ciudad2, int tanqueAuto){
 		Graph<String> grafo = mapaCiudades();
 		boolean[] visited = new boolean[grafo.getSize()];
 		Vertex<String> startingVertex = grafo.search(ciudad1);
@@ -183,5 +184,3 @@ public class Mapa {
 		aux.ciudades.remove(aux.ciudades.size() - 1);
 	}
 }
-
-//Ejercicio verguero
