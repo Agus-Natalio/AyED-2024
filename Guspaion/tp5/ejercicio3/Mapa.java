@@ -71,7 +71,7 @@ public class Mapa {
 		}
 		return new LinkedList<String>();
 	}
-		
+	
 	
 	
 	public List<String> caminoMasCorto(String ciudad1, String ciudad2){
@@ -109,4 +109,54 @@ public class Mapa {
 		visited[vAct.getPosition()] = false;
 		aux.ciudades.remove(aux.ciudades.size()-1);
 	}
+	
+	
+	public List<String> caminoSinCargarCombustible(String ciudad1, String ciudad2, int tanqueAuto){
+		Graph<String> grafo = mapaCiudades();
+		boolean[] visited = new boolean[grafo.getSize()];
+		Vertex<String> startingVertex = grafo.search(ciudad1);
+		Ruta camino = new Ruta(new LinkedList<String>(), 0);
+		if(startingVertex != null) {
+			caminoSinCargarCombustible(grafo, startingVertex, ciudad2, visited, camino, tanqueAuto);
+		}
+		return camino.ciudades;
+	}
+	
+	private void caminoSinCargarCombustible(Graph<String> grafo, Vertex<String> vAct, String ciudad2, boolean[] visited, Ruta camino, int fuel) {
+		visited[vAct.getPosition()] = true;
+		camino.ciudades.add(vAct.getData());
+		if(vAct.getData().equals(ciudad2)) {
+			return;
+		}
+		for(Edge<String> e: grafo.getEdges(vAct)) {
+			Vertex<String> v = e.getTarget();
+			if(!visited[v.getPosition()]) {
+				camino.peso+= e.getWeight();
+				if(camino.peso <= fuel) {
+					caminoSinCargarCombustible(grafo, v, ciudad2, visited, camino, fuel);
+				}
+				camino.peso-= e.getWeight();
+			}
+		}
+		visited[vAct.getPosition()] = false;
+		camino.ciudades.remove(camino.ciudades.size() - 1);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
