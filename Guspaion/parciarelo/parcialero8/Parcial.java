@@ -59,3 +59,8 @@ public class Parcial {
 		return max;
 	}
 }
+
+
+
+
+Ejercicio re putisimo
