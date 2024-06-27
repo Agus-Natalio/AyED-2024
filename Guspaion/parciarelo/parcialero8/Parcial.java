@@ -53,6 +53,9 @@ public class Parcial {
 		}
 		visited[vAct.getPosition()] = false;
 		lAct.remove(lAct.size() - 1);
+		if (pasandoPor.contains(vAct.getData())) {
+           		visitedNefasto[pasandoPor.indexOf(vAct.getData())] = false;
+        	}
 		return max;
 	}
 }
