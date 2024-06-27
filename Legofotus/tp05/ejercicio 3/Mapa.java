@@ -9,7 +9,7 @@ public class Mapa {
     if(resultLis.getLast().equals(ciudad2)) {
       return resultList;
     } else {
-      return LinkediList<String>();
+      return LinkediList<String>("");
     }
   }
   
