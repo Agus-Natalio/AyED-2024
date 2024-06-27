@@ -37,10 +37,10 @@ public class Parcial {
 		if(tiempo < 0) {
 			return false;
 		}
+		visited[vAct.getPosition()] = true;
 		if(allVertexVisited(visited)) {
 			return true;
 		}
-		visited[vAct.getPosition()] = true;
 		for(Edge<Recinto> e: sitios.getEdges(vAct)) {
 			Vertex<Recinto> v = e.getTarget();
 			if(!visited[v.getPosition()]) {
