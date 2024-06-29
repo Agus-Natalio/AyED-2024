@@ -36,18 +36,18 @@ public class Parcial {
 			visitedNefasto[pasandoPor.indexOf(vAct.getData())] = true;
 		}
 		if(vAct.getData().equals(destino)) {
-			int visitedAct = visitados(visitedNefasto, lAct);
+			int visitedAct = visitados(visitedNefasto);
 			if(visitedAct > max) {
 				l.clear();
 				l.addAll(lAct);
-				visited[vAct.getPosition()] = false;
-				lAct.remove(lAct.size() - 1);
-				return visitedAct;
-			} else {
-				visited[vAct.getPosition()] = false;
-				lAct.remove(lAct.size() - 1);
-				return max;
+				max = visitedAct;
 			}
+			visited[vAct.getPosition()] = false;
+			lAct.remove(lAct.size() - 1);
+			if (pasandoPor.contains(vAct.getData())) {
+           			visitedNefasto[pasandoPor.indexOf(vAct.getData())] = false;
+        		}
+			return max;
 		}
 		for(Edge<String> e: ciudades.getEdges(vAct)) {
 			Vertex<String> v = e.getTarget();
