@@ -40,8 +40,12 @@ public class Parcial {
 			if(visitedAct > max) {
 				l.clear();
 				l.addAll(lAct);
+				visited[vAct.getPosition()] = false;
+				lAct.remove(lAct.size() - 1);
 				return visitedAct;
 			} else {
+				visited[vAct.getPosition()] = false;
+				lAct.remove(lAct.size() - 1);
 				return max;
 			}
 		}
